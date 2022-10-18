@@ -13,13 +13,19 @@ import javax.persistence.PersistenceContext;
 @SpringBootApplication
 public class SocialMediaApplication {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin
 
 	public static void main(String[] args) {
 		SpringApplication.run(SocialMediaApplication.class, args);
 	}
 
+<<<<<<< HEAD
 	}
 
+=======
+>>>>>>> origin
 
 
