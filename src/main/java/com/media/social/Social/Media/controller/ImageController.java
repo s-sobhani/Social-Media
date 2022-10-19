@@ -13,13 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/api/image")
+@RequestMapping(value="/api/image",
+        method = RequestMethod.POST,
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+)
 public class ImageController {
 
-    private final String FOLDER_PATH = "/assets/img/";
+    //private final String FOLDER_PATH = "/assets/img/";
 
 
 //    @Autowired
@@ -41,10 +45,20 @@ public class ImageController {
     private FileStorageServiceImpl fileStorageService;
 
     @PostMapping
-    public ResponseEntity<?> uploadImage(@RequestParam(value = "image") MultipartFile file) throws IOException {
-        String uploadImage = fileStorageService.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
+    private String fileUpload(@RequestParam("file") MultipartFile file){
+
+        File convertFile = new File(
+                "/home/shadman/Documents/Uploads/"+ file.getOriginalFilename());
+
+        try(FileOutputStream fileOut = new FileOutputStream(convertFile)){
+
+            fileOut.write(file.getBytes());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+       return "redirect:/profile";
     }
 
     @GetMapping("/{fileName}")
@@ -54,6 +68,7 @@ public class ImageController {
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);
 
-
     }
 }
+
+
