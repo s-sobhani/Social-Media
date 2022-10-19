@@ -9,23 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.File;
 
 @SpringBootApplication
 public class SocialMediaApplication {
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin
 
 	public static void main(String[] args) {
 		SpringApplication.run(SocialMediaApplication.class, args);
 	}
 
-<<<<<<< HEAD
+
 	}
-
-=======
->>>>>>> origin
-
 
